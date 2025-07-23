@@ -1,45 +1,113 @@
 language: sr
 tests:
   - sentences:
+      - "Да ли је завеса лева навучена?"
+      - "Да ли је лева завеса навучена?"
       - "Да ли је лева завеса затворена?"
     intent:
       name: HassGetState
       slots:
         domain: cover
-        name: "лева завеса"
+        name: "Curtain Left"
         state: "closed"
+    response: "Не, отворена је"
 
   - sentences:
-      - "Да ли је било која завеса отворена у дневној соби?"
+      - "Који је статус леве завесе?"
     intent:
       name: HassGetState
       slots:
         domain: cover
-        area: "дневној соби"
-        device_class: curtain
-        state: "open"
+        name: "Curtain Left"
+    response: "Лева завеса је отворена"
 
   - sentences:
+      - "Да ли су завесе отворене у дневној соби?"
+      - "Да ли су неке завесе у дневној соби отворене?"
+      - "Да ли су у дневној соби неке завесе отворене?"
+      - "Има ли отворених завеса у дневној соби?"
+      - "Има ли завеса отворених у дневној соби?"
+      - "Да ли је нека завеса у дневној соби отворена?"
+    intent:
+      name: HassGetState
+      slots:
+        domain: cover
+        area: "Living Room"
+        device_class: curtain
+        state: "open"
+    response: "Да, лева завеса"
+
+  - sentences:
+      - "Да ли су ролетне отворене на спрату?"
+      - "Да ли су неке од ролетни отворене на спрату?"
+      - "Да ли су отворене ролетне на спрату?"
+    intent:
+      name: HassGetState
+      slots:
+        domain: cover
+        floor: "Upstairs"
+        device_class: shade
+        state: "open"
+    response: "Да, лева завеса"
+
+  - sentences:
+      - "Да ли су ролетне отворене напољу?"
+    intent:
+      name: HassGetState
+      slots:
+        domain: cover
+        area: "Outside"
+        device_class: shade
+        state: "open"
+    response: "Не"
+
+  - sentences:
+      - "Да ли су све завесе у дневној соби отворене?"
       - "Да ли су све завесе отворене у дневној соби?"
     intent:
       name: HassGetState
       slots:
         domain: cover
-        area: "дневној соби"
+        area: "Living Room"
         device_class: curtain
         state: "open"
+    response: "Не, десна завеса није отворена"
+
+  - sentences:
+      - "Да ли су све завесе отворене на првом спрату?"
+    intent:
+      name: HassGetState
+      slots:
+        domain: cover
+        floor: "First Floor"
+        device_class: curtain
+        state: "open"
+    response: "Не, десна завеса није отворена"
 
   - sentences:
       - "Које су завесе затворене?"
+      - "Које су затворене завесе?"
     intent:
       name: HassGetState
       slots:
         domain: cover
         device_class: curtain
         state: "closed"
+    response: "Завеса у спаваћој соби и десна завеса"
 
   - sentences:
-      - "Колико завеса је затворено?"
+      - "Које су завесе затворене у спаваћој соби?"
+      - "Које су завесе у спаваћој соби затворене?"
+    intent:
+      name: HassGetState
+      slots:
+        domain: cover
+        area: "Bedroom"
+        device_class: curtain
+        state: "closed"
+    response: "Завеса у спаваћој соби"
+
+  - sentences:
       - "Колико је завеса затворено?"
     intent:
       name: HassGetState
@@ -48,3 +116,15 @@ tests:
         device_class: curtain
         state: "closed"
     response: "2"
+
+  - sentences:
+      - "Колико је завеса у спаваћој соби затворено?"
+      - "Колико је затворено завеса у спаваћој соби?"
+    intent:
+      name: HassGetState
+      slots:
+        domain: cover
+        device_class: curtain
+        area: "Bedroom"
+        state: "closed"
+    response: "1"
